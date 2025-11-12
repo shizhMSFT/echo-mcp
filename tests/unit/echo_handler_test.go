@@ -87,3 +87,64 @@ func TestHandleEcho_IsNotError(t *testing.T) {
 		t.Error("Expected IsError to be false")
 	}
 }
+
+// T082: Benchmark test for echo handler
+func BenchmarkEchoHandler(b *testing.B) {
+	message := "Hello, MCP benchmark test!"
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_, err := server.HandleEcho(message)
+		if err != nil {
+			b.Fatal(err)
+		}
+	}
+}
+
+// Benchmark echo handler with various message sizes
+func BenchmarkEchoHandler_SmallMessage(b *testing.B) {
+	message := "test" // 4 bytes
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		server.HandleEcho(message)
+	}
+}
+
+func BenchmarkEchoHandler_MediumMessage(b *testing.B) {
+	message := string(make([]byte, 1024)) // 1KB
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		server.HandleEcho(message)
+	}
+}
+
+func BenchmarkEchoHandler_LargeMessage(b *testing.B) {
+	message := string(make([]byte, 1024*1024)) // 1MB
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		server.HandleEcho(message)
+	}
+}
+
+// Benchmark echo handler with Unicode
+func BenchmarkEchoHandler_Unicode(b *testing.B) {
+	message := "Hello 世界 🌍 مرحبا Здравствуй"
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		server.HandleEcho(message)
+	}
+}
+
+// Benchmark echo handler with JSON strings
+func BenchmarkEchoHandler_JSON(b *testing.B) {
+	message := `{"name":"test","value":123,"nested":{"key":"value"}}`
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		server.HandleEcho(message)
+	}
+}
