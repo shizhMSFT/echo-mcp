@@ -68,15 +68,27 @@ func HandleInitialize(params json.RawMessage) (*InitializeResult, error) {
 		}
 	}
 
-	// Validate protocol version
+	// Validate protocol version - be lenient with version compatibility
+	// Accept any 2024-* or 2025-* version or exact match
 	if initParams.ProtocolVersion != ProtocolVersion {
-		return nil, &RPCError{
-			Code:    InvalidParams,
-			Message: fmt.Sprintf("Invalid params: incompatible protocol version"),
-			Data: map[string]string{
-				"supported": ProtocolVersion,
-				"requested": initParams.ProtocolVersion,
-			},
+		// Check if it's a 2024 or 2025 version (compatible)
+		isCompatible := false
+		if len(initParams.ProtocolVersion) >= 4 {
+			yearPrefix := initParams.ProtocolVersion[:4]
+			if yearPrefix == "2024" || yearPrefix == "2025" {
+				isCompatible = true
+			}
+		}
+
+		if !isCompatible {
+			return nil, &RPCError{
+				Code:    InvalidParams,
+				Message: "Invalid params: incompatible protocol version",
+				Data: map[string]string{
+					"supported": ProtocolVersion,
+					"requested": initParams.ProtocolVersion,
+				},
+			}
 		}
 	}
 
