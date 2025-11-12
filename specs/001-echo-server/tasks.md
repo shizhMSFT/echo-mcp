@@ -24,16 +24,16 @@
 
 **Purpose**: Initialize Go project structure, dependencies, and tooling
 
-- [ ] T001 Initialize Go module with `go mod init github.com/shizhMSFT/echo-mcp` in repository root
-- [ ] T002 [P] Create directory structure: `cmd/echo-mcp/`, `internal/server/`, `internal/transport/`, `internal/protocol/`
-- [ ] T003 [P] Create test directories: `tests/contract/`, `tests/integration/`, `tests/unit/`
-- [ ] T004 [P] Create .gitignore with Go patterns (*.exe, *.test, vendor/, *.out, .env*, .DS_Store)
-- [ ] T005 [P] Create .dockerignore with build artifacts (.git, specs, .vscode, *.md except README.md, coverage.*)
-- [ ] T006 Add zerolog dependency: `go get github.com/rs/zerolog`
-- [ ] T007 [P] Create .golangci.yml with linter configuration (gofmt, go vet, gocyclo, staticcheck)
-- [ ] T008 [P] Create Makefile with targets: build, test, lint, run-local, run-remote, docker-build
-- [ ] T009 [P] Create README.md with project description, quick start, and usage examples
-- [ ] T010 [P] Create go.mod and verify all dependencies downloaded with `go mod download`
+- [X] T001 Initialize Go module with `go mod init github.com/shizhMSFT/echo-mcp` in repository root
+- [X] T002 [P] Create directory structure: `cmd/echo-mcp/`, `internal/server/`, `internal/transport/`, `internal/protocol/`
+- [X] T003 [P] Create test directories: `tests/contract/`, `tests/integration/`, `tests/unit/`
+- [X] T004 [P] Create .gitignore with Go patterns (*.exe, *.test, vendor/, *.out, .env*, .DS_Store)
+- [X] T005 [P] Create .dockerignore with build artifacts (.git, specs, .vscode, *.md except README.md, coverage.*)
+- [X] T006 Add zerolog dependency: `go get github.com/rs/zerolog`
+- [X] T007 [P] Create .golangci.yml with linter configuration (gofmt, go vet, gocyclo, staticcheck)
+- [X] T008 [P] Create Makefile with targets: build, test, lint, run-local, run-remote, docker-build
+- [X] T009 [P] Create README.md with project description, quick start, and usage examples
+- [X] T010 [P] Create go.mod and verify all dependencies downloaded with `go mod download`
 
 ---
 
@@ -43,13 +43,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T011 Define MCP protocol types in internal/protocol/types.go (JSONRPCRequest, JSONRPCResponse, RPCError, InitializeParams, InitializeResult, ToolCallParams, ToolCallResult per data-model.md)
-- [ ] T012 [P] Define server info constants in internal/protocol/types.go (ServerName="echo-mcp", ProtocolVersion="2024-11-05")
-- [ ] T013 Implement MCP protocol message parser in internal/protocol/handlers.go (ParseRequest function with JSON unmarshaling and validation)
-- [ ] T014 Implement MCP protocol message builder in internal/protocol/handlers.go (BuildResponse, BuildErrorResponse functions)
-- [ ] T015 [P] Define logger interface and implementation in internal/server/logger.go (supports text and JSON formats, logs raw requests)
-- [ ] T016 Create server configuration struct in internal/server/server.go (Mode, Port, LogFormat, LogLevel fields)
-- [ ] T017 Implement configuration loading from environment variables in internal/server/server.go (ECHO_MCP_MODE, ECHO_MCP_PORT, ECHO_MCP_LOG_FORMAT, ECHO_MCP_LOG_LEVEL)
+- [X] T011 Define MCP protocol types in internal/protocol/types.go (JSONRPCRequest, JSONRPCResponse, RPCError, InitializeParams, InitializeResult, ToolCallParams, ToolCallResult per data-model.md)
+- [X] T012 [P] Define server info constants in internal/protocol/types.go (ServerName="echo-mcp", ProtocolVersion="2024-11-05")
+- [X] T013 Implement MCP protocol message parser in internal/protocol/handlers.go (ParseRequest function with JSON unmarshaling and validation)
+- [X] T014 Implement MCP protocol message builder in internal/protocol/handlers.go (BuildResponse, BuildErrorResponse functions)
+- [X] T015 [P] Define logger interface and implementation in internal/server/logger.go (supports text and JSON formats, logs raw requests)
+- [X] T016 Create server configuration struct in internal/server/server.go (Mode, Port, LogFormat, LogLevel fields)
+- [X] T017 Implement configuration loading from environment variables in internal/server/server.go (ECHO_MCP_MODE, ECHO_MCP_PORT, ECHO_MCP_LOG_FORMAT, ECHO_MCP_LOG_LEVEL)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -63,23 +63,23 @@
 
 ### Tests for User Story 1 (TDD - Write First)
 
-- [ ] T018 [P] [US1] Contract test for tools/list in tests/contract/echo_tool_test.go (verify echo tool schema matches spec)
-- [ ] T019 [P] [US1] Contract test for tools/call with simple string in tests/contract/echo_tool_test.go (message="Hello, MCP!")
-- [ ] T020 [P] [US1] Contract test for tools/call with JSON string in tests/contract/echo_tool_test.go (verify JSON structure preserved)
-- [ ] T021 [P] [US1] Contract test for tools/call with empty string in tests/contract/echo_tool_test.go (message="")
-- [ ] T022 [P] [US1] Contract test for tools/call with unicode in tests/contract/echo_tool_test.go (message="Hello 世界 🌍")
-- [ ] T023 [P] [US1] Contract test for tools/call with special characters in tests/contract/echo_tool_test.go (tabs, newlines, quotes)
-- [ ] T024 [P] [US1] Unit test for echo handler in tests/unit/echo_handler_test.go (table-driven tests for message preservation)
+- [X] T018 [P] [US1] Contract test for tools/list in tests/contract/echo_tool_test.go (verify echo tool schema matches spec)
+- [X] T019 [P] [US1] Contract test for tools/call with simple string in tests/contract/echo_tool_test.go (message="Hello, MCP!")
+- [X] T020 [P] [US1] Contract test for tools/call with JSON string in tests/contract/echo_tool_test.go (verify JSON structure preserved)
+- [X] T021 [P] [US1] Contract test for tools/call with empty string in tests/contract/echo_tool_test.go (message="")
+- [X] T022 [P] [US1] Contract test for tools/call with unicode in tests/contract/echo_tool_test.go (message="Hello 世界 🌍")
+- [X] T023 [P] [US1] Contract test for tools/call with special characters in tests/contract/echo_tool_test.go (tabs, newlines, quotes)
+- [X] T024 [P] [US1] Unit test for echo handler in tests/unit/echo_handler_test.go (table-driven tests for message preservation)
 
 ### Implementation for User Story 1
 
-- [ ] T025 [US1] Implement echo tool definition in internal/server/echo_tool.go (ToolDefinition with name, description, inputSchema per data-model.md)
-- [ ] T026 [US1] Implement echo tool handler function in internal/server/echo_tool.go (HandleEcho that returns ToolCallResult with exact message copy)
-- [ ] T027 [US1] Implement tools/list handler in internal/protocol/handlers.go (returns array with echo tool definition)
-- [ ] T028 [US1] Implement tools/call router in internal/protocol/handlers.go (dispatches to echo handler based on tool name)
-- [ ] T029 [US1] Add error handling for missing message parameter in internal/server/echo_tool.go (return -32602 Invalid params error)
-- [ ] T030 [US1] Add error handling for unknown tool in internal/protocol/handlers.go (return -32601 Method not found error)
-- [ ] T031 [US1] Run all User Story 1 tests and verify they pass: `go test ./tests/contract/echo_tool_test.go ./tests/unit/echo_handler_test.go -v`
+- [X] T025 [US1] Implement echo tool definition in internal/server/echo_tool.go (ToolDefinition with name, description, inputSchema per data-model.md)
+- [X] T026 [US1] Implement echo tool handler function in internal/server/echo_tool.go (HandleEcho that returns ToolCallResult with exact message copy)
+- [X] T027 [US1] Implement tools/list handler in internal/protocol/handlers.go (returns array with echo tool definition)
+- [X] T028 [US1] Implement tools/call router in internal/protocol/handlers.go (dispatches to echo handler based on tool name)
+- [X] T029 [US1] Add error handling for missing message parameter in internal/server/echo_tool.go (return -32602 Invalid params error)
+- [X] T030 [US1] Add error handling for unknown tool in internal/protocol/handlers.go (return -32601 Method not found error)
+- [X] T031 [US1] Run all User Story 1 tests and verify they pass: `go test ./tests/contract/echo_tool_test.go ./tests/unit/echo_handler_test.go -v`
 
 **Checkpoint**: User Story 1 complete - Echo tool functional and independently testable
 
@@ -95,24 +95,24 @@
 
 ### Tests for User Story 3 (TDD - Write First)
 
-- [ ] T032 [P] [US3] Integration test for stdio initialize handshake in tests/integration/stdio_transport_test.go
-- [ ] T033 [P] [US3] Integration test for stdio echo request/response in tests/integration/stdio_transport_test.go
-- [ ] T034 [P] [US3] Integration test for stdio sequential requests in tests/integration/stdio_transport_test.go (verify no interleaving)
-- [ ] T035 [P] [US3] Integration test for stdio graceful shutdown in tests/integration/stdio_transport_test.go (client closes stdin)
+- [X] T032 [P] [US3] Integration test for stdio initialize handshake in tests/integration/stdio_transport_test.go
+- [X] T033 [P] [US3] Integration test for stdio echo request/response in tests/integration/stdio_transport_test.go
+- [X] T034 [P] [US3] Integration test for stdio sequential requests in tests/integration/stdio_transport_test.go (verify no interleaving)
+- [X] T035 [P] [US3] Integration test for stdio graceful shutdown in tests/integration/stdio_transport_test.go (client closes stdin)
 - [ ] T036 [P] [US3] Unit test for stdio message reader in tests/unit/stdio_transport_test.go (line-delimited JSON parsing)
 
 ### Implementation for User Story 3
 
-- [ ] T037 [US3] Implement stdio transport in internal/transport/stdio.go (StdioTransport struct with Run method)
-- [ ] T038 [US3] Implement stdin reader using bufio.Scanner in internal/transport/stdio.go (reads line-delimited JSON)
-- [ ] T039 [US3] Implement stdout writer in internal/transport/stdio.go (writes JSON response followed by newline)
-- [ ] T040 [US3] Implement MCP request handling loop in internal/transport/stdio.go (read request → process → write response)
-- [ ] T041 [US3] Implement initialize handler integration in internal/transport/stdio.go (calls protocol handlers)
-- [ ] T042 [US3] Implement graceful shutdown on stdin EOF in internal/transport/stdio.go (context cancellation)
-- [ ] T043 [US3] Create main.go entry point in cmd/echo-mcp/main.go (CLI flags: --mode, --port, --log-format, --log-level)
-- [ ] T044 [US3] Implement server bootstrap in cmd/echo-mcp/main.go (initialize config, logger, transport based on mode flag)
-- [ ] T045 [US3] Run all User Story 3 tests and verify they pass: `go test ./tests/integration/stdio_transport_test.go -v`
-- [ ] T046 [US3] Manual test: echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","clientInfo":{"name":"test","version":"1.0"},"capabilities":{}}}' | go run cmd/echo-mcp/main.go --mode=local
+- [X] T037 [US3] Implement stdio transport in internal/transport/stdio.go (StdioTransport struct with Run method)
+- [X] T038 [US3] Implement stdin reader using bufio.Scanner in internal/transport/stdio.go (reads line-delimited JSON)
+- [X] T039 [US3] Implement stdout writer in internal/transport/stdio.go (writes JSON response followed by newline)
+- [X] T040 [US3] Implement MCP request handling loop in internal/transport/stdio.go (read request → process → write response)
+- [X] T041 [US3] Implement initialize handler integration in internal/transport/stdio.go (calls protocol handlers)
+- [X] T042 [US3] Implement graceful shutdown on stdin EOF in internal/transport/stdio.go (context cancellation)
+- [X] T043 [US3] Create main.go entry point in cmd/echo-mcp/main.go (CLI flags: --mode, --port, --log-format, --log-level)
+- [X] T044 [US3] Implement server bootstrap in cmd/echo-mcp/main.go (initialize config, logger, transport based on mode flag)
+- [X] T045 [US3] Run all User Story 3 tests and verify they pass: `go test ./tests/integration/stdio_transport_test.go -v`
+- [X] T046 [US3] Manual test: echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","clientInfo":{"name":"test","version":"1.0"},"capabilities":{}}}' | go run cmd/echo-mcp/main.go --mode=local
 
 **Checkpoint**: User Story 3 complete - Stdio transport functional, server can run in local mode
 

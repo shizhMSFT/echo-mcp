@@ -26,6 +26,18 @@ go.work.sum
 
 # env file
 .env
+.env.*
+
+# Build artifacts
+echo-mcp
+bin/
+dist/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
 
 # Editor/IDE
 # .idea/

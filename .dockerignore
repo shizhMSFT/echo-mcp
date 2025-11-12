@@ -1,0 +1,40 @@
+# Git
+.git/
+.gitignore
+
+# Specs and documentation (not needed in container)
+specs/
+*.md
+!README.md
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Build artifacts
+bin/
+dist/
+*.exe
+*.test
+*.out
+
+# Test coverage
+coverage.*
+*.coverprofile
+profile.cov
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# CI/CD
+.github/
+
+# Specify directory
+.specify/
